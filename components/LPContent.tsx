@@ -1,12 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Lightbulb, BookOpen, Clock,
   BrainCircuit, Sparkles, ArrowRight,
   MessageCircle, Layers, GitBranch, PenLine, CheckCircle2,
-  Check,
+  Check, Menu, X,
 } from "lucide-react";
 import FadeInSection from "./FadeInSection";
 
@@ -15,6 +16,7 @@ interface Props {
 }
 
 export default function LPContent({ hasHero }: Props) {
+  const [menuOpen, setMenuOpen] = useState(false);
   const empathyCards = [
     { icon: <Lightbulb size={24} color="#C17A5A" />, text: "やりたいことはある。でも何から始めればいいかわからない" },
     { icon: <BookOpen size={24} color="#C17A5A" />, text: "情報は集めた。でも頭の中が整理できていない" },
@@ -60,14 +62,16 @@ export default function LPContent({ hasHero }: Props) {
         transition={{ duration: 0.5 }}
         style={{
           backgroundColor: "#F8F5F0", borderBottom: "1px solid #ddd",
-          padding: "16px 40px", display: "flex", alignItems: "center",
-          justifyContent: "space-between", position: "sticky", top: 0, zIndex: 100,
+          padding: "16px 24px", display: "flex", alignItems: "center",
+          justifyContent: "space-between", position: "sticky", top: 0, zIndex: 200,
         }}
       >
         <div style={{ fontSize: "20px", fontWeight: "600", letterSpacing: "0.05em" }}>
           グチ<span style={{ color: "#7A9E87" }}>カラ</span>
         </div>
-        <div style={{ display: "flex", gap: "32px", fontSize: "14px" }}>
+
+        {/* デスクトップ用ナビ */}
+        <div className="nav-desktop" style={{ display: "flex", gap: "32px", fontSize: "14px" }}>
           {navLinks.map((link) => (
             <motion.a
               key={link.href}
@@ -81,7 +85,72 @@ export default function LPContent({ hasHero }: Props) {
             </motion.a>
           ))}
         </div>
+
+        {/* ハンバーガーボタン（モバイルのみ） */}
+        <button
+          className="nav-hamburger"
+          onClick={() => setMenuOpen(!menuOpen)}
+          style={{
+            display: "none",
+            background: "none", border: "none", cursor: "pointer",
+            padding: "4px", color: "#3A3A3A",
+          }}
+          aria-label="メニューを開く"
+        >
+          {menuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </motion.nav>
+
+      {/* モバイルメニュー オーバーレイ */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            style={{
+              position: "fixed", top: "57px", left: 0, right: 0, bottom: 0,
+              backgroundColor: "#F8F5F0", zIndex: 190,
+              display: "flex", flexDirection: "column",
+              alignItems: "center", justifyContent: "center", gap: "40px",
+            }}
+          >
+            {navLinks.map((link, i) => (
+              <motion.a
+                key={link.href}
+                href={link.href}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.07 }}
+                onClick={() => setMenuOpen(false)}
+                style={{
+                  fontSize: "22px", fontWeight: "500",
+                  color: "#3A3A3A", textDecoration: "none",
+                  letterSpacing: "0.05em",
+                }}
+              >
+                {link.label}
+              </motion.a>
+            ))}
+            <motion.a
+              href="#apply"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: navLinks.length * 0.07 }}
+              onClick={() => setMenuOpen(false)}
+              style={{
+                marginTop: "16px",
+                backgroundColor: "#C17A5A", color: "#fff",
+                borderRadius: "40px", padding: "14px 32px",
+                fontSize: "15px", fontWeight: "500", textDecoration: "none",
+              }}
+            >
+              無料相談を申し込む
+            </motion.a>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* ── FV ── */}
       <div style={{ display: "flex", minHeight: "calc(100vh - 57px)" }} className="fv-container">
@@ -459,7 +528,12 @@ export default function LPContent({ hasHero }: Props) {
       </footer>
 
       <style>{`
+        .nav-desktop { display: flex; }
+        .nav-hamburger { display: none; }
+
         @media (max-width: 768px) {
+          .nav-desktop { display: none !important; }
+          .nav-hamburger { display: block !important; }
           .fv-container { flex-direction: column !important; }
           .fv-left { width: 100% !important; height: 300px !important; min-height: 300px !important; }
           .fv-right { width: 100% !important; padding: 32px 24px !important; }
