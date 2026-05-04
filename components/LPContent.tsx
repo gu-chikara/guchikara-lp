@@ -316,10 +316,10 @@ export default function LPContent({ hasHero }: Props) {
       <section style={{ backgroundColor: "#F8F5F0" }}>
         <div style={{ maxWidth: "640px", margin: "0 auto", padding: "80px 20px", textAlign: "left" }}>
           <FadeInSection>
-            <p style={{ fontSize: "2rem", fontWeight: "500", color: "#3A3A3A", margin: 0, lineHeight: "1.5", textAlign: "center" }}>
+            <p className="problem-heading" style={{ fontSize: "2rem", fontWeight: "500", color: "#3A3A3A", margin: 0, lineHeight: "1.5", textAlign: "center" }}>
               それは、能力の問題じゃない。
             </p>
-            <p style={{ fontSize: "2rem", fontWeight: "500", color: "#7A9E87", marginTop: "16px", marginBottom: 0, lineHeight: "1.5", textAlign: "center" }}>
+            <p className="problem-heading" style={{ fontSize: "2rem", fontWeight: "500", color: "#7A9E87", marginTop: "16px", marginBottom: 0, lineHeight: "1.5", textAlign: "center" }}>
               思考が整理されていないだけ。
             </p>
             <p style={{ fontSize: "15px", color: "#666", lineHeight: "1.9", marginTop: "32px", marginBottom: "48px", textAlign: "left" }}>
@@ -572,6 +572,7 @@ export default function LPContent({ hasHero }: Props) {
           .nav-hamburger { display: block !important; }
           .arrow-right { display: none !important; }
           .arrow-down { display: inline-flex !important; }
+          .problem-heading { text-align: left !important; }
           .fv-container { flex-direction: column !important; }
           .fv-left { width: 100% !important; height: 420px !important; min-height: 420px !important; }
           .fv-left img { object-position: top center !important; }
