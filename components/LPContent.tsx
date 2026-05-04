@@ -307,7 +307,7 @@ export default function LPContent({ hasHero }: Props) {
 
       {/* ── ブロック② 問題提起セクション ── */}
       <section style={{ backgroundColor: "#F8F5F0" }}>
-        <div style={{ maxWidth: "640px", margin: "0 auto", padding: "80px 20px", textAlign: "center" }}>
+        <div style={{ maxWidth: "640px", margin: "0 auto", padding: "80px 20px", textAlign: "left" }}>
           <FadeInSection>
             <p style={{ fontSize: "2rem", fontWeight: "500", color: "#3A3A3A", margin: 0, lineHeight: "1.5" }}>
               それは、能力の問題じゃない。
