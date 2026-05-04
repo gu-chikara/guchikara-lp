@@ -535,7 +535,8 @@ export default function LPContent({ hasHero }: Props) {
           .nav-desktop { display: none !important; }
           .nav-hamburger { display: block !important; }
           .fv-container { flex-direction: column !important; }
-          .fv-left { width: 100% !important; height: 300px !important; min-height: 300px !important; }
+          .fv-left { width: 100% !important; height: 420px !important; min-height: 420px !important; }
+          .fv-left img { object-position: top center !important; }
           .fv-right { width: 100% !important; padding: 32px 24px !important; }
           .price-cards { flex-direction: column !important; }
           .before-after { flex-direction: column !important; }
