@@ -1,13 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Lightbulb, BookOpen, Clock,
   BrainCircuit, Sparkles, ArrowRight, ArrowDown,
   MessageCircle, Layers, GitBranch, PenLine, CheckCircle2,
-  Check, Menu, X,
+  Check, Menu, X, ChevronUp,
 } from "lucide-react";
 import FadeInSection from "./FadeInSection";
 
@@ -17,6 +17,13 @@ interface Props {
 
 export default function LPContent({ hasHero }: Props) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setShowScrollTop(window.scrollY > 400);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   const empathyCards = [
     { icon: <Lightbulb size={24} color="#C17A5A" />, text: "やりたいことはある。でも何から始めればいいかわからない" },
     { icon: <BookOpen size={24} color="#C17A5A" />, text: "情報は集めた。でも頭の中が整理できていない" },
@@ -527,6 +534,32 @@ export default function LPContent({ hasHero }: Props) {
       <footer style={{ backgroundColor: "#3A3A3A", textAlign: "center", padding: "32px 20px" }}>
         <p style={{ fontSize: "13px", color: "#888", margin: 0 }}>© 2025 グチカラ — 思考整理セッション</p>
       </footer>
+
+      {/* ── 上に戻るボタン ── */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.2 }}
+            whileHover={{ scale: 1.1, backgroundColor: "#d4896a" }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            aria-label="ページ上部へ戻る"
+            style={{
+              position: "fixed", bottom: "28px", right: "24px", zIndex: 300,
+              width: "48px", height: "48px", borderRadius: "50%",
+              backgroundColor: "#C17A5A", color: "#fff",
+              border: "none", cursor: "pointer",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              boxShadow: "0 4px 16px rgba(0,0,0,0.2)",
+            }}
+          >
+            <ChevronUp size={22} />
+          </motion.button>
+        )}
+      </AnimatePresence>
 
       <style>{`
         .nav-desktop { display: flex; }
