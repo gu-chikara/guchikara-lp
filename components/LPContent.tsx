@@ -5,7 +5,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Lightbulb, BookOpen, Clock,
-  BrainCircuit, Sparkles, ArrowRight,
+  BrainCircuit, Sparkles, ArrowRight, ArrowDown,
   MessageCircle, Layers, GitBranch, PenLine, CheckCircle2,
   Check, Menu, X,
 } from "lucide-react";
@@ -335,7 +335,8 @@ export default function LPContent({ hasHero }: Props) {
             </FadeInSection>
 
             <FadeInSection delay={0.3} style={{ flexShrink: 0 }}>
-              <ArrowRight size={32} color="#C17A5A" />
+              <span className="arrow-right"><ArrowRight size={32} color="#C17A5A" /></span>
+              <span className="arrow-down"><ArrowDown size={32} color="#C17A5A" /></span>
             </FadeInSection>
 
             <FadeInSection direction="right" delay={0.2} style={{ flex: 1 }}>
@@ -530,10 +531,14 @@ export default function LPContent({ hasHero }: Props) {
       <style>{`
         .nav-desktop { display: flex; }
         .nav-hamburger { display: none; }
+        .arrow-right { display: inline-flex; }
+        .arrow-down { display: none; }
 
         @media (max-width: 768px) {
           .nav-desktop { display: none !important; }
           .nav-hamburger { display: block !important; }
+          .arrow-right { display: none !important; }
+          .arrow-down { display: inline-flex !important; }
           .fv-container { flex-direction: column !important; }
           .fv-left { width: 100% !important; height: 420px !important; min-height: 420px !important; }
           .fv-left img { object-position: top center !important; }
