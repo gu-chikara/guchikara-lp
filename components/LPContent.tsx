@@ -410,7 +410,7 @@ export default function LPContent({ hasHero }: Props) {
 
       {/* ── ブロック④ プロフィールセクション ── */}
       <section style={{ backgroundColor: "#3A3A3A" }}>
-        <div style={{ maxWidth: "720px", margin: "0 auto", padding: "80px 20px", textAlign: "center" }}>
+        <div style={{ maxWidth: "720px", margin: "0 auto", padding: "80px 20px", textAlign: "left" }}>
           <FadeInSection>
             <p style={{ fontSize: "13px", color: "#7A9E87", letterSpacing: "0.15em", marginBottom: "16px" }}>プロフィール</p>
             <h2 style={{ fontSize: "1.5rem", fontWeight: "500", color: "#ffffff", marginTop: "16px", marginBottom: 0 }}>濱田（仮名）</h2>
