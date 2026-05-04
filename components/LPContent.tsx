@@ -316,13 +316,13 @@ export default function LPContent({ hasHero }: Props) {
       <section style={{ backgroundColor: "#F8F5F0" }}>
         <div style={{ maxWidth: "640px", margin: "0 auto", padding: "80px 20px", textAlign: "left" }}>
           <FadeInSection>
-            <p style={{ fontSize: "2rem", fontWeight: "500", color: "#3A3A3A", margin: 0, lineHeight: "1.5" }}>
+            <p style={{ fontSize: "2rem", fontWeight: "500", color: "#3A3A3A", margin: 0, lineHeight: "1.5", textAlign: "center" }}>
               それは、能力の問題じゃない。
             </p>
-            <p style={{ fontSize: "2rem", fontWeight: "500", color: "#7A9E87", marginTop: "16px", marginBottom: 0, lineHeight: "1.5" }}>
+            <p style={{ fontSize: "2rem", fontWeight: "500", color: "#7A9E87", marginTop: "16px", marginBottom: 0, lineHeight: "1.5", textAlign: "center" }}>
               思考が整理されていないだけ。
             </p>
-            <p style={{ fontSize: "15px", color: "#666", lineHeight: "1.9", marginTop: "32px", marginBottom: "48px" }}>
+            <p style={{ fontSize: "15px", color: "#666", lineHeight: "1.9", marginTop: "32px", marginBottom: "48px", textAlign: "left" }}>
               情報過多の時代、頭の中がカオスになるのは当然のことです。<br />
               必要なのは、その混乱を整理してくれる&ldquo;場&rdquo;と&ldquo;人&rdquo;です。
             </p>
