@@ -42,7 +42,8 @@ export default function LPContent({ hasHero }: Props) {
     "60分・オンライン",
     "完全無料",
     "勧誘なし",
-    "現状ヒアリング＋方向性のヒント",
+    "現状ヒアリング",
+    "方向性のヒント",
   ];
 
   const paidChecks = [
@@ -333,8 +334,14 @@ export default function LPContent({ hasHero }: Props) {
             <FadeInSection direction="left" style={{ flex: 1 }}>
               <div style={{
                 backgroundColor: "#fff", borderRadius: "12px", padding: "24px",
-                opacity: 0.6, textAlign: "left",
+                opacity: 0.6, textAlign: "left", position: "relative",
               }}>
+                <div style={{
+                  position: "absolute", top: "12px", right: "12px",
+                  backgroundColor: "#aaa", color: "#fff",
+                  fontSize: "11px", fontWeight: "700", padding: "2px 8px",
+                  borderRadius: "4px", letterSpacing: "0.05em",
+                }}>Before</div>
                 <BrainCircuit size={32} color="#aaa" />
                 <p style={{ fontSize: "15px", fontWeight: "600", color: "#3A3A3A", margin: "12px 0 6px" }}>頭の中がカオス</p>
                 <p style={{ fontSize: "13px", color: "#888", margin: 0, lineHeight: "1.7" }}>情報が溢れて動けない</p>
@@ -379,7 +386,7 @@ export default function LPContent({ hasHero }: Props) {
           </FadeInSection>
           <div style={{ textAlign: "left" }}>
             {steps.map((step, i) => (
-              <div key={i} style={{ borderBottom: i < steps.length - 1 ? "1px solid #eee" : "none" }}>
+              <div key={i} style={{ borderBottom: i < steps.length - 1 ? "1px solid #e8e0d8" : "none" }}>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -417,21 +424,39 @@ export default function LPContent({ hasHero }: Props) {
 
       {/* ── ブロック④ プロフィールセクション ── */}
       <section style={{ backgroundColor: "#3A3A3A" }}>
-        <div style={{ maxWidth: "720px", margin: "0 auto", padding: "80px 20px", textAlign: "left" }}>
+        <div style={{ maxWidth: "720px", margin: "0 auto", padding: "80px 20px" }}>
           <FadeInSection>
-            <p style={{ fontSize: "13px", color: "#7A9E87", letterSpacing: "0.15em", marginBottom: "16px" }}>プロフィール</p>
-            <h2 style={{ fontSize: "1.5rem", fontWeight: "500", color: "#ffffff", marginTop: "16px", marginBottom: 0 }}>濱田（仮名）</h2>
-            <p style={{ fontSize: "15px", color: "#ccc", lineHeight: "1.9", marginTop: "24px" }}>
-              不動産業界での営業職時代、私は&ldquo;全部オープンにする&rdquo;スタイルでお客様と向き合ってきました。
-            </p>
-            <p style={{ fontSize: "15px", color: "#ccc", lineHeight: "1.9", marginTop: "20px" }}>
-              売り込むのではなく、寄り添うこと。<br />
-              そうすることで、ほぼ紹介だけで成り立つ仕事ができました。
-            </p>
-            <p style={{ fontSize: "15px", color: "#ccc", lineHeight: "1.9", marginTop: "20px" }}>
-              その経験から気づいたのは、人は&ldquo;整理された安心感&rdquo;の中でこそ、本当にやりたいことを話せるということ。<br />
-              グチカラは、その場を作るサービスです。
-            </p>
+            <div className="profile-layout" style={{ display: "flex", gap: "40px", alignItems: "center" }}>
+              {/* 左：写真 */}
+              {hasHero && (
+                <div className="profile-photo" style={{
+                  width: "40%", flexShrink: 0,
+                  position: "relative", height: "320px",
+                  borderRadius: "12px", overflow: "hidden",
+                }}>
+                  <Image
+                    src="/guchikara-lp/images/hero.jpg" alt="濱田（仮名）"
+                    fill style={{ objectFit: "cover", objectPosition: "top center" }}
+                  />
+                </div>
+              )}
+              {/* 右：テキスト */}
+              <div className="profile-text" style={{ flex: 1, textAlign: "left" }}>
+                <p style={{ fontSize: "13px", color: "#7A9E87", letterSpacing: "0.15em", marginBottom: "16px" }}>プロフィール</p>
+                <h2 style={{ fontSize: "1.5rem", fontWeight: "500", color: "#ffffff", marginTop: "16px", marginBottom: 0 }}>濱田（仮名）</h2>
+                <p style={{ fontSize: "15px", color: "#ccc", lineHeight: "1.9", marginTop: "24px" }}>
+                  不動産業界での営業職時代、私は&ldquo;全部オープンにする&rdquo;スタイルでお客様と向き合ってきました。
+                </p>
+                <p style={{ fontSize: "15px", color: "#ccc", lineHeight: "1.9", marginTop: "20px" }}>
+                  売り込むのではなく、寄り添うこと。<br />
+                  そうすることで、ほぼ紹介だけで成り立つ仕事ができました。
+                </p>
+                <p style={{ fontSize: "15px", color: "#ccc", lineHeight: "1.9", marginTop: "20px" }}>
+                  その経験から気づいたのは、人は&ldquo;整理された安心感&rdquo;の中でこそ、本当にやりたいことを話せるということ。<br />
+                  グチカラは、その場を作るサービスです。
+                </p>
+              </div>
+            </div>
           </FadeInSection>
         </div>
       </section>
@@ -579,6 +604,8 @@ export default function LPContent({ hasHero }: Props) {
           .fv-right { width: 100% !important; padding: 32px 24px !important; }
           .price-cards { flex-direction: column !important; }
           .before-after { flex-direction: column !important; }
+          .profile-layout { flex-direction: column !important; }
+          .profile-photo { width: 100% !important; }
         }
         .nav-link::after {
           content: '';
